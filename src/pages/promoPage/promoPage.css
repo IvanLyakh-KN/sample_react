@@ -1,0 +1,27 @@
+.promo-page{
+    width: 100%;
+    height: 100vh;
+    color: #FFF;
+    font-style: normal;
+    line-height: normal;
+    font-weight: 700;
+    text-align: center;
+    background: url('./mainPhone.jpg') no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.promo-page__title {
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 40px;
+}
+
+.promo-page__subtitle{
+    font-size: 24px;
+}
+
+.promo-page__subtitle:nth-child(2){
+    padding-top: 20px;
+}

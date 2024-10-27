@@ -1,25 +1,83 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react"
+import db from "./db/db";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Navigation from "./components/navigation/navigation";
+import PromoPage from "./pages/promoPage/promoPage";
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+    const { eng, uk } = db;
+    this.state = {
+      eng,
+      uk,
+      language: "eng",
+      currentPage: 1,
+      currentItem: 1
+    }
+  }
+
+  setLanguage = () => {
+    if (localStorage.language) {
+      switch (localStorage.language) {
+        case "uk":
+          this.setState({ language: "uk" });
+          break;
+        case "eng":
+          this.setState({ language: "eng" });
+          break;
+        default:
+          console.log(localStorage.language);
+      }
+    }
+  }
+
+  changeLang = (e) => {
+    if (e) {
+      switch (e.target.textContent) {
+        case "eng":
+          localStorage.setItem('language', "eng");
+          this.setState({ language: "eng" });
+          break;
+        case "uk":
+          localStorage.setItem("language", "uk");
+          this.setState({ language: "uk" });
+          break;
+        default:
+          this.setState({ language: "eng" });
+          break;
+      }
+    }
+  }
+
+  LoadedPage = (promoPage) => {
+    const data = this.state[this.state.language];
+    switch (this.state.currentPage) {
+      case 1:
+        return <PromoPage /*language={this.state.language}*/ promoPage={promoPage} cards = {data.cards}></PromoPage>;
+      case 2:
+        return;
+      case 3:
+        return;
+      case 4:
+        return;
+      default: 
+      return <PromoPage></PromoPage>;
+    }
+  }
+
+  render() {
+    const data = this.state[this.state.language];
+    const {buttons, nav, promoPage} = data;
+    return (
+      <div className="wrapper">
+        <Navigation buttons = {buttons} nav = {nav} changeLang = {this.changeLang}  /*changePage */></Navigation>
+      <main>
+        {this.LoadedPage(promoPage)};
+      </main>
+      </div>
+    );
+  }
 }
 
 export default App;

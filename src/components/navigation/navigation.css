@@ -1,0 +1,27 @@
+.navigation{
+    padding-top: 30px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.navigation-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation a{ 
+    color: white;
+}
+.navigation li{
+    display: inline;
+    padding-right: 30px;
+}
+.navigation li:nth-child(1){
+    padding-right: 0;
+}
+.language{
+    justify-content: end;
+}

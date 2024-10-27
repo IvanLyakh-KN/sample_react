@@ -1,0 +1,15 @@
+.decor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.decor__svg{
+    padding: 0 25px;
+}
+
+.decor__line{
+    display: inline-block;
+    height: 1px;
+    width: 100px;
+}
